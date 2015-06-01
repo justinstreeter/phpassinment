@@ -90,11 +90,13 @@ if($valid && $count == 0){
 	//echo $email, $encPass, $fname, $lname;
 	// try to query the DB
 		try{
+            require 'dbconn.php';
 		// Check to see if that Email Address exists in our DB
 			$sql = "INSERT INTO users (id, email, password, fname, lname) VALUES ('', '$email', '$encPass', '$fname', '$lname')";
 		// execute SQL query
 		$row = $db->prepare($sql);
 		$row->execute();
+         $count = $row->rowCount();   
 		// let user know that the info was inserted into the DB
 		$message .= "Account registered.<br />";
 		} 
